@@ -34,15 +34,15 @@
                                 <tbody>
                                 @if($orderList->isEmpty())
                                     <tr>
-                                        <td colspan="5">{{trans('home.invoice_table_none')}}</td>
+                                        <td colspan="6">{{trans('home.invoice_table_none')}}</td>
                                     </tr>
                                 @else
                                     @foreach($orderList as $key => $order)
                                         <tr class="odd gradeX">
                                             <td>{{$key + 1}}</td>
-                                            <td>{{$order->orderId}}</td>
+                                            <td>{{$order->order_sn}}</td>
                                             <td>{{empty($order->goods) ? '【商品已删除】' : $order->goods->name}}</td>
-                                            <td>￥{{$order->totalPrice}}</td>
+                                            <td>￥{{$order->amount}}</td>
                                             <td>{{$order->created_at}}</td>
                                             <td>
                                                 @if(!$order->is_expire)
@@ -51,7 +51,7 @@
                                                     @elseif($order->status == 0)
                                                         <a href="javascript:;" class="btn btn-sm dark disabled"> {{trans('home.invoice_table_wait_payment')}} </a>
                                                         @if(!empty($order->payment))
-                                                            <a href="{{url('payment/' . $order->payment->sn)}}" target="_self" class="btn btn-sm red">支付</a>
+                                                            <a href="{{url('payment/' . $order->payment->sn)}}" target="_self" class="btn btn-sm red">{{trans('home.pay')}}</a>
                                                         @endif
                                                     @elseif($order->status == 1)
                                                         <a href="javascript:;" class="btn btn-sm dark disabled"> {{trans('home.invoice_table_wait_confirm')}} </a>

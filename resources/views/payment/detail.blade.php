@@ -11,7 +11,7 @@
         <div class="portlet light bordered">
             <div class="portlet-body">
                 <div class="alert alert-info" style="text-align: center;">
-                    请使用<strong>支付宝</strong>或<strong>微信</strong>扫描如下二维码
+                    请使用<strong style="color:red;">支付宝、QQ、微信</strong>扫描如下二维码
                 </div>
                 <div class="row" style="text-align: center; font-size: 1.05em;">
                     <div class="col-md-12">
@@ -23,7 +23,7 @@
                                 </tr>
                                 <tr>
                                     <td align="right">应付金额：</td>
-                                    <td align="left">{{$payment->amount / 100}} 元</td>
+                                    <td align="left">{{$payment->amount}} 元</td>
                                 </tr>
                                 <tr>
                                     <td align="right">有效期：</td>
@@ -33,7 +33,7 @@
                                     <td colspan="2">
                                         长按下图并点击弹出的“识别图中二维码”进行付款
                                         <br>
-                                        请于10分钟内支付，到期未支付订单将自动关闭
+                                        请于30分钟内支付，到期未支付订单将自动关闭
                                     </td>
                                 </tr>
                                 <tr>
@@ -54,8 +54,9 @@
 @section('script')
     <script src="/js/layer/layer.js" type="text/javascript"></script>
     <script type="text/javascript">
+        // 每2秒查询一次订单状态
         $(document).ready(function(){
-            setInterval("getStatus()", 3000);
+            setInterval("getStatus()", 2000);
         });
 
         // 检查支付单状态

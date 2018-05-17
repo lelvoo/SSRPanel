@@ -5,13 +5,14 @@ namespace App\Http\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Paypal支付订单
- * Class Paypal
+ * 支付回调（有赞云支付）
+ * Class PaymentCallback
+ *
  * @package App\Http\Models
  */
-class Paypal extends Model
+class PaymentCallback extends Model
 {
-    protected $table = 'paypal';
+    protected $table = 'payment_callback';
     protected $primaryKey = 'id';
 
 }
